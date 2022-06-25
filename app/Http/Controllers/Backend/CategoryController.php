@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Backend\Tag;
+use App\Models\Backend\Category;
 use Illuminate\Http\Request;
 
-class TagController extends BackendBaseController
+class CategoryController extends BackendBaseController
 {
     // optimization of code
-    protected $base_route = 'backend.tag.';
-    protected $base_view = 'backend.tag.';
-    protected $module= 'Tag';
+    protected $base_route = 'backend.category.';
+    protected $base_view = 'backend.category.';
+    protected $module= 'Category';
 
     public function __construct(){
-        $this->model =new Tag();
+        $this->model =new Category();
 
     }
     /**
