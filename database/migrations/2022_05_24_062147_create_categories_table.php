@@ -14,19 +14,20 @@ return new class extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id();           
-            $table->string('title', 100);
+            $table->id();
+            $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->Integer('rank');
-            $table->string('image')->nullable();
-            $table->string('meta_title',100)->nullable();
-            $table->string('meta_keyword',100)->nullable();
-            $table->string('meta_description',100)->nullable();
+            $table->integer('rank');
+            $table->longText('description')->nullable();
+            $table->text('image')->nullable();
+            $table->text('meta_keyword')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->text('meta_title')->nullable();
             $table->boolean('status')->default(0);
-            $table->unsignedBigInteger('created_by');
-            $table->unsignedBigInteger('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
+            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
         });

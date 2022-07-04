@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Backend\Subcategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,6 +17,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
                 CategorySeeder::class
+            ]);
+            $this->call([
+                SubcategorySeeder::class
+            ]);
+            $this->call([
+                BrandSeeder::class
             ]);
 
         // $this->call([

@@ -58,14 +58,9 @@
                                 <td>{{$loop -> index +1 }}</td>
                                 <td>{{$record->title}}</td>
                                 <td>{{$record->slug}}</td>
-                                {{-- <td>{{$record->status}}</td> --}}
-                                <td>
-                                   @include('backend.includes.status',['status'=>$record->status])
-                                </td>
-                                {{-- <td>{{$record->created_by}}</td> --}}
+                                <td> @include('backend.includes.status',['status'=>$record->status])</td>
                                 <td>
                                     {{$record->createdBy->name}}
-                                    {{-- {{\App\Models\User::find($record->created_by)->name}} --}}
                                 </td>
                                 <td>
                                     @if(!empty($record->updated_by))

@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title', 'Brand list')
+@section('title', $module .' list')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Brand Management</h1>
+                    <h1>{{$module}} Management</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Brand</li>
+                        <li class="breadcrumb-item active">{{$module}}</li>
                     </ol>
                 </div>
             </div>
@@ -25,8 +25,9 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Brand Tag</h3>
-
+                <h3 class="card-title">List {{$module}}
+                <a href="{{route($base_route .'index')}}" class="btn btn-primary">List</a>
+            </h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -37,7 +38,7 @@
                 </div>
             </div>
             <div class="card-body">
-      
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -50,16 +51,46 @@
                             <td>{{ $data['record']->slug }}</td>
                         </tr>
                         <tr>
+                            <th>Rank</th>
+                            <td>{{ $data['record']->rank }}</td>
+                        </tr>
+                        <tr>
+                            <th>Meta Title</th>
+                            <td>{{ $data['record']->meta_title }}</td>
+                        </tr>
+                        <tr>
+                            <th>Meta Keyword</th>
+                            <td>{{ $data['record']->meta_keyword }}</td>
+                        </tr>
+                        <tr>
+                            <th>Meta Description</th>
+                            <td>{{ $data['record']->meta_description }}</td>
+                        </tr>
+                        <tr>
                             <th>Status</th>
-                            <td>@include('backend.includes.status',['status'=> $data['record']->status])</td>
+                            <td>@include('backend.includes.status', ['status' => $data['record']->status])</td>
                         </tr>
                         <tr>
                             <th>Created_at</th>
-                                <td> {{$data['record']->created_at}}</td> 
+                            <td> {{ $data['record']->created_at }}</td>
                         </tr>
                         <tr>
                             <th>Updated_at</th>
-                                <td>{{$data['record']->updated_at}}</td> 
+                            <td> {{ $data['record']->updated_at }}</td>
+                        </tr>
+                        <tr>
+                            <th>Created_By</th>
+
+                        <td>
+                            {{$data['record']->createdBy->name}}
+                        </td>
+                        <tr>
+                            <th>Updated_By</th>
+                            <td>
+                                @if(!empty($data['record']->updated_by))
+                                    {{ $data['record']->updatedBy->name }}
+                                @endif
+                            </td>
                         </tr>
                     </thead>
                 </table>

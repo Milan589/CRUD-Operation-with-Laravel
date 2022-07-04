@@ -64,7 +64,6 @@
                         </tr>
                         <tr>
                             <th>Created_By</th>
-
                         <td>
                             {{$data['record']->createdBy->name}}
                         </td>

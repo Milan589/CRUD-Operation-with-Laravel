@@ -152,7 +152,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{url('../backend/brand/index')}}"" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>List</p>
                                     </a>
@@ -195,13 +195,36 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{url('../backend/subcategory/create')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Create</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{url('../backend/subcategory')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>List</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                     Product
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('../backend/product/create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Create</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('../backend/product')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>List</p>
                                     </a>
