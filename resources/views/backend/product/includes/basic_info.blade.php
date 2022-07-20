@@ -1,26 +1,26 @@
 <div class="form-group">
     {{-- <label for="">Category ID:</label> --}}
-    {!! Form::label('categories_id','Category ID') !!}
-    {!! Form::select('categories_id',$data['categories'],null,['class'=>'form-control','placeholder'=>'Select Category']) !!}
-    {{-- <select name="categories_id" id="categories_id" @class('form-control')>
+    {!! Form::label('category_id','Category ID') !!}
+    {!! Form::select('category_id',$data['categories'],null,['class'=>'form-control','placeholder'=>'Select Category']) !!}
+    {{-- <select name="category_id" id="category_id" @class('form-control')>
         <option value="">Select Category</option>
         @foreach ($data['categories'] as $category)
         <option value="{{$category->id}}">{{$category->title}}</option>    
         @endforeach
     </select> --}}
-   @include('backend.includes.single_field_error',['field'=>'categories_id'])
+   @include('backend.includes.single_field_error',['field'=>'category_id'])
 </div>
 <div class="form-group">
     {{-- <label for="">Category ID:</label> --}}
-    {!! Form::label('subcategories_id','Category ID') !!}
-    {!! Form::select('subcategories_id',$data['subcategories'],null,['class'=>'form-control','placeholder'=>'Select Subategory']) !!}
-    {{-- <select name="categories_id" id="categories_id" @class('form-control')>
+    {!! Form::label('subcategory_id','Subategory ID') !!}
+    {!! Form::select('subcategory_id',$data['subcategories'],null,['class'=>'form-control','placeholder'=>'Select Subategory']) !!}
+    {{-- <select name="category_id" id="category_id" @class('form-control')>
         <option value="">Select Category</option>
         @foreach ($data['categories'] as $category)
         <option value="{{$category->id}}">{{$category->title}}</option>    
         @endforeach
     </select> --}}
-   @include('backend.includes.single_field_error',['field'=>'subcategories_id'])
+   @include('backend.includes.single_field_error',['field'=>'subcategory_id'])
 </div>
 <div class="form-group">
     {!! Form::label('title','Title: ') !!}
@@ -43,6 +43,11 @@
     @include('backend.includes.single_field_error',['field'=>'discount'])
 </div>
 <div class="form-group">
+    {!! Form::label('stock','Stock:') !!}
+    {!! Form::number('stock',null,['class'=>'form-control','id'=>'stock']) !!}
+    @include('backend.includes.single_field_error',['field'=>'stock'])
+</div>
+<div class="form-group">
     {!! Form::label('quantity','Quantity:') !!}
     {!! Form::number('quantity',null,['class'=>'form-control','id'=>'quantity']) !!}
     @include('backend.includes.single_field_error',['field'=>'quantity'])
@@ -56,6 +61,10 @@
     {!! Form::label('description','Description:') !!}
     {!! Form::textarea('description',null,['class'=>'form-control','id'=>'description','rows'=>5]) !!}
     @include('backend.includes.single_field_error',['field'=>'description'])
+</div>
+<div class="form-group">
+    {!! Form::label('tag','Tag:') !!}
+    {!! Form::select('tag_id[]',$data['tags'],null,['class'=>'form-control','id'=>'tag','placeholder'=>'Select Tag','multiple'=>'multiple']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('status','Status:') !!}

@@ -20,4 +20,10 @@ class Category extends Model
     function updatedBy(){
         return $this->belongsTo(User::class, 'updated_by','id');
     }
+    function subcategories(){
+        return $this->hasMany(Subcategory::class,'category_id','id');
+    }
+    function activeSubcategories(){
+        return $this->hasMany(Subcategory::class,'category_id','id')->where('status',1);
+    }
 }
