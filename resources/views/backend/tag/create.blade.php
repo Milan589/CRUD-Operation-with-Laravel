@@ -14,16 +14,10 @@
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active">{{$module}}</li>
                     </ol>
-                </div>
+                </div>  
             </div>
-        </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-        <!-- Default box -->
-        <div class="card">
+                   <!-- Default box -->
+        <div class="row">
             <div class="card-header">
                 <h3 class="card-title">  Create {{$module}}
                 <a href="{{route($base_route .'index')}}" @class("btn btn-success")" >List</a>
@@ -86,8 +80,12 @@
         </div>
         <!-- /.card -->
 
+        </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
+
+
+
+        
 
 @endsection
 @section('js')

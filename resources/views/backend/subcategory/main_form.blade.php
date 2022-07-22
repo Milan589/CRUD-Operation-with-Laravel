@@ -26,6 +26,10 @@
     @include('backend.includes.single_field_error',['field'=>'rank'])
 </div>
 <div class="form-group">
+    {!! Form::label('image','Image:') !!}
+    {!! Form::file('image',null,['class'=>'form-control','id'=>'image']) !!}
+</div>
+<div class="form-group">
     <label for="">Status:</label>
     <input type="radio" name="status" id="active" value="1">Active
     <input type="radio" name="status" id="deactive" value="0" checked>Deactive

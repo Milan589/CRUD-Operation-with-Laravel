@@ -28,6 +28,12 @@ Auth::routes();
 
 ################# HomeController #################
 Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('frontend.home');
+Route::get('/subcategory/{slug}', [App\Http\Controllers\Frontend\HomeController::class, 'subcategory'])->name('frontend.subcategory');
+Route::get('/product/{slug}', [App\Http\Controllers\Frontend\HomeController::class, 'product'])->name('frontend.product');
+Route::get('/tag/{slug}', [App\Http\Controllers\Frontend\HomeController::class, 'tag'])->name('frontend.tag');
+Route::post('/cart/add', [App\Http\Controllers\Frontend\HomeController::class, 'addToCart'])->name('frontend.cart.add');
+Route::get('/cart/list', [App\Http\Controllers\Frontend\HomeController::class, 'cartList'])->name('frontend.cart.list');
+Route::post('/cart/update', [App\Http\Controllers\Frontend\HomeController::class, 'updateCart'])->name('frontend.cart.update');
 
 
 
