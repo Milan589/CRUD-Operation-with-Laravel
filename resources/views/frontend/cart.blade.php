@@ -78,10 +78,12 @@
                   <div class="left"><a href="{{route('frontend.home')}}" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Continue shopping</a></div>
                   <div class="right"> 
                     <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-refresh"></i> Update cart</button>
-                    {{-- @if (auth()->user() != null && auth()->user()->role->name =='customer') --}}
-                    <a type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i></a>
-                    {{-- @else  --}}
-                    {{-- <span class="text-info">Please <a href="{{route('frontend.customer.register')}}">Login</a>to ckeckout</span> --}}
+                    @if (auth()->user() != null && auth()->user()->role->name =='customer')
+                    <a href="{{route('frontend.checkout')}}" type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i></a>
+                   
+                    @else 
+                    <span class="text-info">Please <a href="{{route('frontend.customer.login')}}">Login</a>to ckeckout</span>
+                    @endif
                   </div> 
                 </div>
               </form>

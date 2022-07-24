@@ -41,15 +41,17 @@
                 <div class="row">
                     <div class="col-lg-6 text-center text-lg-right">
                         <ul class="menu list-inline mb-0">
-                            @if (auth()->user() != null && auth()->user()->role->name =='customer')
-                            <li class="list-inline-item"><a href="#" data-toggle="modal"
-                                data-target="#login-modal"></a></li>
-                            @endif
-                           
+                            {{-- @if (auth()->user() != null && auth()->user()->role->name =='customer')
                             <li class="list-inline-item"><a
+                                    href="#">{{auth()->user()->name}}</a></li>
+                                    @else    --}}
+                            <li class="list-inline-item"><a
+                                href="{{ route('frontend.customer.login') }}">Login</a></li>
+                                <li class="list-inline-item"><a
                                     href="{{ route('frontend.customer.register') }}">Register</a></li>
+                              
                             <li class="list-inline-item"><a href="contact.html">Contact</a></li>
-                            <li class="list-inline-item"><a href="#">Recently viewed</a></li>
+                              {{-- @endif --}}
                         </ul>
                     </div>
                 </div>

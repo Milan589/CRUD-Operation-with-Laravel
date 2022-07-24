@@ -35,9 +35,11 @@ Route::post('/cart/add', [App\Http\Controllers\Frontend\HomeController::class, '
 Route::get('/cart/list', [App\Http\Controllers\Frontend\HomeController::class, 'cartList'])->name('frontend.cart.list');
 Route::post('/cart/update', [App\Http\Controllers\Frontend\HomeController::class, 'updateCart'])->name('frontend.cart.update');
 Route::get('/customer/register', [App\Http\Controllers\Frontend\CustomerController::class, 'registerForm'])->name('frontend.customer.register');
+Route::get('/customer/login', [App\Http\Controllers\Frontend\CustomerController::class, 'login'])->name('frontend.customer.login');
 Route::post('/customer/doregister', [App\Http\Controllers\Frontend\CustomerController::class, 'register'])->name('frontend.customer.doregister');
 Route::get('/customer/home', [App\Http\Controllers\Frontend\CustomerController::class, 'home'])->name('frontend.customer.home');
-Route::get('/customer/checkout', [App\Http\Controllers\Frontend\HomeController::class, 'checkout'])->name('frontend.customer.checkout');
+Route::get('/checkout', [App\Http\Controllers\Frontend\HomeController::class, 'checkout'])->name('frontend.cart.checkout');
+Route::post('/cart/checkout', [App\Http\Controllers\Frontend\HomeController::class, 'doCheckout'])->name('frontend.docheckout');
 
 
 

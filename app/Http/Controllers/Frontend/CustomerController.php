@@ -50,6 +50,9 @@ class CustomerController extends FrontendBaseController
             return redirect()->route('frontend.customer.register');
         }
      }
+     function login(){
+        return view($this->__LoadDataToView('frontend.customer.login'));
+    }
      function home(){
         return view($this->__LoadDataToView('frontend.customer.home'));
     }

@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 @section('title','Dashboard')
-
+@section('css')
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
