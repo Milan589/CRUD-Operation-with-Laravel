@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tags', function (Blueprint $table) {
-            $table->id();               
-            $table->string('title', 100);
-            $table->string('slug')->unique();
+            $table->id();
+            $table->string('name');
+            $table->string('slug');
             $table->boolean('status')->default(0);
-            $table->unsignedBigInteger('created_by');
-            $table->unsignedBigInteger('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
+            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
         });

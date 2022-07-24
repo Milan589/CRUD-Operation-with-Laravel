@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title> @yield('title') | Ecommerce Admin</title>
 
     <!-- Google Font: Source Sans Pro -->
@@ -12,7 +13,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assests/plugin/dist/css/adminlte.min.css') }}">
     @yield('css')
 </head>
 
@@ -113,7 +114,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Attribute
@@ -122,13 +123,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../../index.html" class="nav-link">
+                                    <a href="{{url('../backend/attribute/create')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Create</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index2.html" class="nav-link">
+                                    <a href="{{url('../backend/attribute/index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>List</p>
                                     </a>
@@ -152,7 +153,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{url('../backend/brand/index')}}"" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>List</p>
                                     </a>
@@ -195,13 +196,59 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{url('../backend/subcategory/create')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Create</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{url('../backend/subcategory')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>List</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                     Product
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('../backend/product/create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Create</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('../backend/product')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>List</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Setting
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('../backend/setting/create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Create</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('../backend/setting/index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>List</p>
                                     </a>

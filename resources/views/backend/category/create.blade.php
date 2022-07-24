@@ -59,6 +59,14 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label for="">Rank:</label>
+                    <input type="number" class="form-control" name="rank" id="rank" value="{{ old('rank') }}"
+                        placeholder="Enter rank">
+                    @error('rank')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label for="">Status:</label>
                     <input type="radio" name="status" id="active" value="1">Active
                     <input type="radio" name="status" id="deactive" value="0" checked>Deactive
