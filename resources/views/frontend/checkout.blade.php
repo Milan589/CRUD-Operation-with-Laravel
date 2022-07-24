@@ -17,96 +17,115 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="box">
-                            <h1>New account</h1>
-                            @include('backend.includes.flash') 
-                            <p class="lead">Not our registered customer yet?</p>
-                            <p>With registration with us new world of fashion, fantastic discounts and much more opens to
-                                you! The whole process will not take you more than a minute!</p>
-                            <p class="text-muted">If you have any questions, please feel free to <a
-                                    href="contact.html">contact us</a>, our customer service center is working for you 24/7.
-                            </p>
-                            <hr>
-                            <form action="{{ route('frontend.customer.doregister')}}" method="post">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input id="name" name="name" type="text" class="form-control">
-                                    @error('name')
-                                        <span class="text-danger">
-                                           {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input id="email" name="email" type="text" class="form-control">
-                                    @error('email')
-                                        <span class="text-danger">
-                                           {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input id="password" name="password" type="password" class="form-control">
-                                    @error('password')
-                                        <span class="text-danger">
-                                           {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="perm_address">Permanent Address</label>
-                                    <input id="perm_address" name="perm_address" type="text" class="form-control">
-                                    @error('perm_address')
-                                        <span class="text-danger">
-                                           {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="temp_address">Temporary Address</label>
-                                    <input id="temp_address" name="temp_address" type="text" class="form-control">
-                                    @error('temp_address')
-                                        <span class="text-danger">
-                                           {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="shipping_address">Shipping Address</label>
-                                    <input id="shipping_address" name="shipping_address" type="text"
-                                        class="form-control">
-                                    @error('shipping_address')
-                                        <span class="text-danger">
-                                           {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="image">User Image</label>
-                                    <input id="image" name="image" type="file" class="form-control">
-                                    @error('image')
-                                        <span class="text-danger">
-                                           {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Contact</label>
-                                    <input id="phone" name="phone" type="text" class="form-control">
-                                    @error('phone')
-                                        <span class="text-danger">
-                                           {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i>
-                                        Register</button>
-                                </div>
-                            </form>
+                            <h1>Checkout
+                                <a class="btn btn-info" href="{{ route('frontend.cart.list') }}">Back to Cart</a>
+                            </h1>
+                            @include('backend.includes.flash')
+                            <table class="table">
+
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Product</th>
+                                        <th>Quantity</th>
+                                        <th>Unit price</th>
+                                        <th colspan="2">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (count($carts) > 0)
+                                        @php
+                                            $total = 0;
+                                        @endphp
+                                        @foreach ($carts as $index => $cart)
+                                            @php
+                                                $product = \App\Models\Backend\Product::find($cart->id);
+                                                $image = $product->productImages()->first();
+                                                $total += $cart->qty * $cart->price;
+                                            @endphp
+                                            <input type="hidden" name="row_id[]" value="{{ $index }}">
+                                            <tr>
+                                                <td><a href="#"><img src="" alt="brand"></a></td>
+                                                <td><a href="#">{{ $cart->name }}</a></td>
+                                                <td>
+                                                    {{ $cart->qty }}
+                                                </td>
+                                                <td>{{ $cart->price }}</td>
+
+                                                <td>{{ $cart->qty * $cart->price }}</td>
+                                            </tr>
+                                        @endforeach
+                                   
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="4">Total</th>
+                                        <th colspan="1">Rs. {{ $total }}</th>
+                                    </tr>
+                                    @else
+                                    <tr>
+                                        <td colspan="6">Cart is empty</td>
+                                    </tr>
+                                @endif
+                                </tfoot>
+                            </table>
                         </div>
+                    </div>
+                    <div class="col-lg-12">
+
+                        <form action="{{ route('frontend.docheckout') }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input id="name" name="name" type="text" class="form-control">
+                                @error('name')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" name="email" type="text" class="form-control">
+                                @error('email')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="shipping_address">Shipping Address</label>
+                                <textarea id="shipping_address" name="shipping_address" type="text" class="form-control"> </textarea>
+                                @error('shipping_address')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Contact</label>
+                                <input id="phone" name="phone" type="text" class="form-control">
+                                @error('phone')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="payment_mode">Payment Mode</label>
+                                <input id="payment_mode" name="payment_mode" type="radio" value="COD"  checked>COD
+                                <input id="payment_mode" name="payment_mode" type="radio" value="Online">Online
+                                @error('phone')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i>
+                                    Process</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

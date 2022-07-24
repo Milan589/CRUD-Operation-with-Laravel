@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('order_status');
             $table->string('order_date');
             $table->string('total');
-            $table->string('payment_code');
+            $table->string('payment_mode');
+            $table->timestamp();
             $table->string('payment_code')->nullable();
             $table->foreign('customer_id')->references('id')->on('users');
            
@@ -33,7 +34,7 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
             $table->integer('quantity');
-            $table->double('price');
+            $table->string('price');
             $table->string('options')->nullable();
             $table->foreign('customer_id')->references('id')->on('users');
             $table->foreign('product_id')->references('id')->on('products');

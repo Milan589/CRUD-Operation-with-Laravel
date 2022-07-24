@@ -29,7 +29,7 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ url('/') }}" target="_blank" class="nav-link">Visit Website</a>
+                    <a href="{{ url('/home') }}" target="_blank" class="nav-link">Visit Website</a>
                 </li>
             </ul>
 
