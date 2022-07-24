@@ -41,9 +41,13 @@
                 <div class="row">
                     <div class="col-lg-6 text-center text-lg-right">
                         <ul class="menu list-inline mb-0">
+                            @if (auth()->user() != null && auth()->user()->role->name =='customer')
                             <li class="list-inline-item"><a href="#" data-toggle="modal"
-                                    data-target="#login-modal">Login</a></li>
-                            <li class="list-inline-item"><a href="register.html">Register</a></li>
+                                data-target="#login-modal"></a></li>
+                            @endif
+                           
+                            <li class="list-inline-item"><a
+                                    href="{{ route('frontend.customer.register') }}">Register</a></li>
                             <li class="list-inline-item"><a href="contact.html">Contact</a></li>
                             <li class="list-inline-item"><a href="#">Recently viewed</a></li>
                         </ul>
@@ -114,7 +118,8 @@
                                                 <div class="col-md-6 col-lg-3">
                                                     <ul class="list-unstyled mb-3">
                                                         @foreach ($category->activeSubcategories as $subcategory)
-                                                            <li class="nav-item"><a href="{{route('frontend.subcategory',$subcategory->slug)}}"
+                                                            <li class="nav-item"><a
+                                                                    href="{{ route('frontend.subcategory', $subcategory->slug) }}"
                                                                     class="nav-link"> {{ $subcategory->title }}</a>
                                                             </li>
                                                         @endforeach
@@ -133,8 +138,9 @@
                             href="#search" class="btn navbar-btn btn-primary d-none d-lg-inline-block"><span
                                 class="sr-only">Toggle search</span><i class="fa fa-search"></i></a>
                         <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a
-                                href="{{route('frontend.cart.list')}}" class="btn btn-primary navbar-btn"><i
-                                    class="fa fa-shopping-cart"></i><span>{{$carts->count()}} items in cart</span></a></div>
+                                href="{{ route('frontend.cart.list') }}" class="btn btn-primary navbar-btn"><i
+                                    class="fa fa-shopping-cart"></i><span>{{ $carts->count() }} items in
+                                    cart</span></a></div>
                     </div>
                 </div>
             </div>
@@ -153,7 +159,7 @@
         </div>
     </header>
     @yield('content')
-   <!--
+    <!--
     *** FOOTER ***
     _________________________________________________________
     -->
@@ -172,7 +178,7 @@
                     <h4 class="mb-3">User section</h4>
                     <ul class="list-unstyled">
                         <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-                        <li><a href="register.html">Regiter</a></li>
+                        <li><a href="{{ route('frontend.customer.register') }}">Regiter</a></li>
                     </ul>
                 </div>
                 <!-- /.col-lg-3-->

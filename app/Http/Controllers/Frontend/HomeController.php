@@ -45,6 +45,17 @@ class HomeController extends FrontendBaseController
     }
     function cartList(){
         return view($this->__LoadDataToView('frontend.cart'));
-
+    }
+    function updateCart(Request $request){
+        $row_ids= $request->input('row_id');
+        $qtys= $request->input('qty');
+        for($i=0; $i < count($row_ids);$i++){
+            Cart::update($row_ids[$i],$qtys[$i]);
+        }
+        request()->session()->flash('success','Cart Upadate successfully');
+        return redirect()->route('frontend.cart.list');
+    }
+    function checkout(){
+        return view($this->__LoadDataToView('frontend.checkout'));
     }
 }
