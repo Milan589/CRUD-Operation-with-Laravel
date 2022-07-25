@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends FrontendBaseController
 {
-    function registerForm(){
+    function registerForm()
+    {
         return view($this->__LoadDataToView('frontend.customer.register'));
     }
     function register(Request $request)
@@ -20,27 +21,27 @@ class CustomerController extends FrontendBaseController
             [
                 'name' => 'required',
                 'perm_address' => 'required',
-                'phone'=> 'required',
-                'email'=> 'required|email',
-                'password'=> 'required',
+                'phone' => 'required',
+                'email' => 'required|email',
+                'password' => 'required',
             ]
         );
-          DB::beginTransaction();
+        DB::beginTransaction();
         try {
             $user = User::create([
-                'role_id'=> 10,
-                'name'=> $request->input('name'),
-                'email'=> $request->input('email'),
-                'password'=> Hash::make( $request->input('password')),
+                'role_id' => 10,
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
             ]);
-            if($user){
-                $request->request->add(['user_id'=>$user->id]);
-                $customer = Customer::create($request->all());  
-                if($customer){
+            if ($user) {
+                $request->request->add(['user_id' => $user->id]);
+                $customer = Customer::create($request->all());
+                if ($customer) {
                     DB::commit();
-                    $request->session()->flash('success','Your account register successfully!!');
-                     return redirect()->route('frontend.customer.register');
-                }else{
+                    $request->session()->flash('success', 'Your account register successfully!!');
+                    return redirect()->route('frontend.customer.login');
+                } else {
                     DB::rollBack();
                 }
             }
@@ -49,12 +50,14 @@ class CustomerController extends FrontendBaseController
             $request->session()->flash('error', 'Error: ' . $exception->getMessage());
             return redirect()->route('frontend.customer.register');
         }
-     }
-     function login(){
+        return redirect()->route('frontend.customer.register');
+    }
+    function login()
+    {
         return view($this->__LoadDataToView('frontend.customer.login'));
     }
-     function home(){
+    function home()
+    {
         return view($this->__LoadDataToView('frontend.customer.home'));
     }
-  
 }

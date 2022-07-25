@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('total');
             $table->string('payment_mode');
             $table->timestamp();
-            $table->string('payment_code')->nullable();
             $table->foreign('customer_id')->references('id')->on('users');
            
         });

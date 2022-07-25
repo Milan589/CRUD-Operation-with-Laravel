@@ -18,6 +18,7 @@
                     <div class="col-lg-12">
                         <div class="box">
                             <h1>Login</h1>
+                            @include('backend.includes.flash') 
                             <p class="lead">Already our customer?</p>
                             <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames
                                 ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet,
