@@ -82,17 +82,7 @@
                                         {{ $message }}
                                     </span>
                                 @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input id="email" name="email" type="text" class="form-control">
-                                @error('email')
-                                    <span class="text-danger">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-                            </div>
-        
+                                </div>
                             <div class="form-group">
                                 <label for="shipping_address">Shipping Address</label>
                                 <textarea id="shipping_address" name="shipping_address" type="text" class="form-control"> </textarea>
@@ -113,8 +103,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="payment_mode">Payment Mode</label>
-                                <input id="payment_mode" name="payment_mode" type="radio" value="COD"  checked>COD
-                                <input id="payment_mode" name="payment_mode" type="radio" value="Online">Online
+                                <input id="payment_mode" name="payment_mode" type="radio" value="cod"  checked>COD
+                                <input id="payment_mode" name="payment_mode" type="radio" value="online">Online
                                 @error('phone')
                                     <span class="text-danger">
                                         {{ $message }}

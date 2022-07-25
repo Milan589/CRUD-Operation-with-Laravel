@@ -21,7 +21,7 @@
                         </div>
                         @if($data['tag']->products->count() > 0)
                         <div class="row products">
-                            @foreach ($data['tag']->products as $product)
+                        @foreach ($data['tag']->products as $product)
                                 @php
                                     $image = $product->productImages()->first();
                                 @endphp
