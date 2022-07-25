@@ -23,6 +23,7 @@ class HomeController extends FrontendBaseController
 
     public function __construct()
     {
+        Cart::setGlobalTax(0);
         $this->gateway = Omnipay::create('PayPal_Rest');
         $this->gateway->setClientId(env('PAYPAL_CLIENT_ID'));
         $this->gateway->setSecret(env('PAYPAL_CLIENT_SECRET'));
@@ -53,6 +54,10 @@ class HomeController extends FrontendBaseController
     }
     function addToCart(Request $request)
     {
+        $options =[];
+        if(!empty($request->options)){
+            $options = $request->options;
+        }
         Cart::add(
             [
                 'id' => $request->input('product_id'),
@@ -110,7 +115,7 @@ class HomeController extends FrontendBaseController
 
                     OrderDetail::create($order_detail_data);   
                     $to = $to + ($cart_item->qty*$cart_item->price);
-                    // Cart::remove($rowid);
+                    Cart::remove($rowid);
                     $request->session()->flash('success', ' Order  successfully!!');
                 }
                 if($request->payment_mode == 'online'){
@@ -162,13 +167,14 @@ class HomeController extends FrontendBaseController
                 $payment->payment_status = $arr_body['state'];
                 $payment->save();
 
-                return "Payment is successful. Your transaction id is: " . $arr_body['id'];
+                Session::flash('success','Payment is successful. Your transaction id is: ' . $arr_body['id']);
             } else {
                 return $response->getMessage();
             }
         } else {
-            return 'Transaction is declined';
+            Session::flash('erroe','Transaction is declined');
         }
+        return redirect()->route('frontend.checkout');
     }
 
     /**
@@ -176,6 +182,6 @@ class HomeController extends FrontendBaseController
      */
     public function error()
     {
-        return 'User cancelled the payment.';
+        Session::flash('User cancelled the payment.');
     }
 }
