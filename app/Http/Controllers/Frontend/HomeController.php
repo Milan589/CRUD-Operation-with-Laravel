@@ -115,13 +115,13 @@ class HomeController extends FrontendBaseController
 
                     OrderDetail::create($order_detail_data);   
                     $to = $to + ($cart_item->qty*$cart_item->price);
-                    Cart::remove($rowid);
+                    // Cart::remove($rowid);
                     $request->session()->flash('success', ' Order  successfully!!');
                 }
                 if($request->payment_mode == 'online'){
                     Session:: put('order_id',$order->id);
                     $response = $this->gateway->purchase(array(
-                        'amount' =>round($to/128),
+                        'amount' =>round($to),
                         'currency' => env('PAYPAL_CURRENCY'),
                         'returnUrl' => url('success'),
                         'cancelUrl' => url('error'),
@@ -135,7 +135,7 @@ class HomeController extends FrontendBaseController
                     }
                 }     
             } else {
-                $request->session()->flash('eror', ' order failed!!');
+                $request->session()->flash('error', ' order failed!!');
             }
         } catch (\Exception $exception) {
             $request->session()->flash('error', 'Error: ' . $exception->getMessage());
