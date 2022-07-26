@@ -115,7 +115,7 @@ class HomeController extends FrontendBaseController
 
                     OrderDetail::create($order_detail_data);   
                     $to = $to + ($cart_item->qty*$cart_item->price);
-                    // Cart::remove($rowid);
+                    Cart::remove($rowid);
                     $request->session()->flash('success', ' Order  successfully!!');
                 }
                 if($request->payment_mode == 'online'){
